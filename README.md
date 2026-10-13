@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Starter Kit
 
-## Getting Started
+Next.js, TypeScript, Tailwind CSS v4, shadcn/ui, lucide-react로 구성된 웹 개발 스타터 킷입니다.
 
-First, run the development server:
+## 기술 스택
+
+| 기술 | 버전 | 비고 |
+|---|---|---|
+| Next.js | 16.4 | App Router, Turbopack, Cache Components |
+| React | 19.3 | |
+| TypeScript | 5.x | |
+| Tailwind CSS | 4.3 | `tailwind.config` 없음, `@tailwindcss/postcss` 사용 |
+| shadcn/ui | CLI 4.x (radix-nova) | `components.json` 참고 |
+| lucide-react | 1.x | 아이콘 |
+| next-themes | 0.4 | 다크 모드 |
+
+## 시작하기
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 스크립트
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| 명령어 | 설명 |
+|---|---|
+| `npm run dev` | 개발 서버 |
+| `npm run build` / `npm start` | 프로덕션 빌드 / 실행 |
+| `npm run lint` / `npm run lint:fix` | ESLint |
+| `npm run typecheck` | 타입 검사 |
+| `npm run format` | Prettier (Tailwind 클래스 정렬 포함) |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 폴더 구조
 
-## Learn More
+```
+src/
+├─ app/                 # 라우트 (layout, page, error, loading, not-found)
+├─ components/
+│  ├─ ui/               # shadcn/ui 컴포넌트
+│  ├─ layout/           # Header, Footer
+│  ├─ theme-provider.tsx
+│  └─ theme-toggle.tsx
+├─ config/site.ts       # 사이트명, 설명, 네비게이션
+└─ lib/utils.ts         # cn 유틸
+```
 
-To learn more about Next.js, take a look at the following resources:
+## shadcn/ui 컴포넌트 추가
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npx shadcn@latest add dialog
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tailwind 커스터마이징
 
-## Deploy on Vercel
+설정 파일 없이 `src/app/globals.css`의 `@theme` 블록에서 테마 변수를 정의합니다.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 환경변수
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`.env.example`을 `.env.local`로 복사해서 사용합니다.
