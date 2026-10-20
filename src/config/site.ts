@@ -14,6 +14,12 @@ export const siteConfig = {
   mainNav: [
     { title: "홈", href: "/" },
     { title: "대시보드", href: "/dashboard" },
+    { title: "예제", href: "/examples" },
+  ] satisfies NavItem[],
+  // 예제 페이지 하위 탭
+  examplesNav: [
+    { title: "컴포넌트", href: "/examples/components" },
+    { title: "폼", href: "/examples/forms" },
   ] satisfies NavItem[],
   // 대시보드 사이드바 메뉴
   dashboardNav: [
