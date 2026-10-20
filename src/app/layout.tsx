@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
-import { Footer } from "@/components/layout/footer";
-import { Header } from "@/components/layout/header";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
+import { Providers } from "@/components/providers";
 import { siteConfig } from "@/config/site";
 
 import "./globals.css";
@@ -24,6 +21,8 @@ export const metadata: Metadata = {
   description: siteConfig.description,
 };
 
+// 루트 레이아웃: html/body와 전역 Provider만 담당한다.
+// 화면 골격(헤더, 사이드바 등)은 각 라우트 그룹의 layout.tsx에서 정의한다.
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -31,18 +30,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <Toaster />
-        </ThemeProvider>
+      <body className="min-h-full">
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
